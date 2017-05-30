@@ -1,0 +1,180 @@
+body {
+    font-family: sans-serif;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 0;
+    margin: 0;
+    font-size: 14px;
+}
+
+.header .title {
+    background: #3c3c3c;
+    color: whitesmoke;
+    padding: 10px;
+}
+
+.header .banner {
+    background: #e7eff5;
+    color: #788e98;
+    height: 80px;
+}
+
+.slogan {
+    margin: 0 auto;
+    display: block;
+    width: 300px;
+    font-size: 20px;
+    padding-top: 20px;
+    color: #b1bfc5;
+}
+
+.loginBtn {
+    margin-top: 5px;
+    margin-left: 20px;
+    position: absolute;
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    min-height: 100%;
+    background: white;
+}
+
+#login-buttons {
+    display: block;
+}
+
+.content {
+    margin-top: 10px;
+}
+
+.new-task {
+    background: #f9f9f9;
+    padding: 10px;
+}
+
+.new-task input[type="submit"] {
+    background: #dee8ef;
+    border: none;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.new-task input[type="submit"]:hover {
+    background: #e9eff3;
+}
+
+textarea {
+    background: #fffefa;
+    border: 1px dashed #b5b5b5;
+}
+
+input[type="radio"] {
+    visibility: hidden;
+    margin: 0;
+    width: 0;
+}
+
+form label:hover {
+    cursor: pointer;
+    color: #99bcce;
+}
+
+.source {
+    float: right;
+    font-size: 12px;
+}
+
+.pagination {
+    padding: 10px;
+    display: flex;
+    color: #607D8B;
+    justify-content: flex-end;
+}
+
+.pagination div {
+    margin: 0 10px;
+}
+
+.pagination div:hover {
+    cursor: pointer;
+    color: #99bcce;
+}
+
+.content {
+    padding: 20px;
+    background: #fffcf1;
+}
+
+.notes {
+    padding: 20px;
+    border: 1px dashed #f7e4e4;
+}
+
+.link {
+    float: right;
+    margin-right: 20px;
+}
+
+input {
+    box-sizing: border-box;
+    padding: 10px 0;
+    background: transparent;
+    border: none;
+    font-size: 1em;
+}
+
+textarea {
+    margin-left: 15px;
+}
+
+.new-task label~input {
+    display: inline-block;
+}
+
+input:focus {
+    outline: 0;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    background: white;
+}
+
+.delete {
+    float: right;
+    font-weight: bold;
+    background: none;
+    font-size: 1em;
+    border: none;
+    position: relative;
+}
+
+li {
+    position: relative;
+    list-style: none;
+    padding: 15px;
+    border-bottom: #eee solid 1px;
+}
+
+li .text {
+    margin-left: 10px;
+}
+
+@media (max-width: 600px) {
+    li {
+        padding: 12px 15px;
+    }
+    .search {
+        width: 150px;
+        clear: both;
+    }
+    .new-task input {
+        padding-bottom: 5px;
+    }
+}
