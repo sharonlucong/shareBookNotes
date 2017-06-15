@@ -64,6 +64,11 @@ Template.body.events({
         event.preventDefault();
 
         const target = event.target;
+
+        if (!target.content.value) {
+            return;
+        }
+
         const task = {
             content: target.content.value,
             note: target.note.value,

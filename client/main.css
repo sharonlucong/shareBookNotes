@@ -17,8 +17,10 @@ body {
 }
 
 .header .banner {
-    background: #e7eff5;
-    color: #788e98;
+    background: url(https://s-media-cache-ak0.pinimg.com/originals/4a/3f/c2/4a3fc295e7d6492d72d9c3a2ba786ad3.jpg);
+    /*background: #e7eff5;*/
+    background-size: contain;
+    color: #303030;
     height: 80px;
 }
 
@@ -28,7 +30,7 @@ body {
     width: 300px;
     font-size: 20px;
     padding-top: 20px;
-    color: #b1bfc5;
+    color: #3d3c3c;
 }
 
 .loginBtn {
@@ -79,7 +81,8 @@ input[type="radio"] {
     width: 0;
 }
 
-form label:hover {
+
+form.link label:hover {
     cursor: pointer;
     color: #99bcce;
 }
@@ -107,12 +110,56 @@ form label:hover {
 
 .content {
     padding: 20px;
-    background: #fffcf1;
+    background: #fff9e2;
 }
 
 .notes {
     padding: 20px;
     border: 1px dashed #f7e4e4;
+}
+
+.new-comment {
+    background: #f7f7f7;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+/*.new-comment input {
+    width: 300px;
+    height: 35px;
+}
+
+.new-comment button {
+    background: #e0e0e0;
+    border: none;
+}*/
+
+.new-comment .add {
+    width: 50px;
+    background: #e8e8e8;
+    margin-left: 10px;
+}
+
+.new-comment .add:hover {
+    background: #fff9e2;
+}
+
+.new-comment input[type="text"] {
+    flex-grow: 2;
+}
+
+.comment-label {
+    padding: 10px;
+}
+
+.comment-container {
+    background: #fbfbfb;
+}
+
+.comment-item {
+    padding: 10px;
+    border-bottom: 1px dashed gainsboro;
 }
 
 .link {

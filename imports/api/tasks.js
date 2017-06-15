@@ -27,7 +27,8 @@ Meteor.methods({
             source: task.source || '',
             createdAt: new Date(),
             owner: Meteor.userId(),
-            username: Meteor.user().username
+            username: Meteor.user().username,
+            comments: []
         });
     },
     'tasks.remove' (taskId) {
@@ -64,6 +65,14 @@ Meteor.methods({
         }
 
         Tasks.update(taskId, { $set: { source: value } });
+    },
+    'tasks.updateComments' (taskId, value) {
+        const task = Tasks.findOne(taskId);
+        if (task.private && task.owner !== Meteor.userId()) {
+            throw new Meteor.Error('not-authorized');
+        }
+
+        Tasks.update(taskId, { $push: { comments: value } });
     },
     'tasks.setState' (state) {
         if (!Meteor.userId()) {

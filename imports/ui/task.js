@@ -44,5 +44,21 @@ Template.task.events({
     },
     'click .delete' () {
         Meteor.call('tasks.remove', this._id);
+    },
+    'click .add' (event, template) {
+        event.preventDefault();
+        const form = event.target && event.target.form;
+        const inputElment = form.children && form.children[1];
+        if (!inputElment.value) {
+            return;
+        }
+
+        const newComment = {
+            username: this.username,
+            comment: inputElment.value
+        };
+
+        Meteor.call('tasks.updateComments', this._id, newComment);
+        inputElment.value = "";
     }
 });

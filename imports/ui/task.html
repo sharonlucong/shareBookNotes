@@ -2,26 +2,38 @@
     <li>
         {{#if isPrivate}}
         <button class="delete">x</button>
-        <input type="text" name="source" placeholder="请输入来源或出处" value="{{source}}" />
+        <input type="text" name="source" class="edit" placeholder="请输入来源或出处" value="{{source}}" />
         <div>
-            <textarea name="content" class="edit" rows="10" cols="45" placeholder="摘录" value="{{content}}"></textarea>
-            <textarea name="note" class="edit" rows="10" cols="45" placeholder="心得" value="{{note}}"></textarea>
+            <textarea name="content" class="edit" rows="10" cols="40" placeholder="摘录" value="{{content}}"></textarea>
+            <textarea name="note" class="edit" rows="10" cols="40" placeholder="心得" value="{{note}}"></textarea>
         </div>
         {{else}}
-                <span class="text"><strong>{{username}}</strong> - {{formatDate}}</span>
-        {{#if content}}
-        <div class="content">
-            <div>节选内容："{{content}}"</div>
-            <div class="source"> 摘自 - {{source}} </div>
-        </div>
-        {{/if}}
-        {{#if note}}
-        <div class="notes">
-            笔记：{{note}}
-        </div>
-        {{/if}}
-
-
+            <span class="text"><strong>{{username}}</strong> - {{formatDate}}</span>
+            {{#if content}}
+            <div class="content">
+                <div>节选内容："{{content}}"</div>
+                <div class="source"> 摘自 - {{source}} </div>
+            </div>
+            {{/if}}
+            {{#if note}}
+            <div class="notes">
+                笔记：{{note}}
+            </div>
+            {{/if}}
+            <div class="comments">
+                <div class="comment-container">
+                    {{#each comments}}
+                        <div class="comment-item">{{username}}: {{comment}}</div>
+                    {{/each}}
+                </div>
+                {{#if currentUser}}
+                <form class="new-comment">
+                    <label class="comment-label">评论: </label>
+                    <input type="text" class="comment" name="comment" value="{{comment}}"/>
+                    <input type="submit" class="add" value="提交"/>
+                </form>
+                {{/if}}
+            </div>
         {{/if}}
     </li>
 </template>

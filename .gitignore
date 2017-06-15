@@ -1,2 +1,4 @@
 node_modules/
 .meteor
+.deploy/
+package-lock.json
