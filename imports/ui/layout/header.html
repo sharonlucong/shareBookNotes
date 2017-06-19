@@ -1,0 +1,38 @@
+   <template name="header">
+    <div class="header">
+        <div class="title">陋室有匪</div>
+        <div class="banner">
+            <div class="slogan">
+                有匪君子，如切如磋，如琢如磨
+            </div>
+            <div class="loginBtn">
+                {{> loginButtons}}
+            </div>
+            {{#if currentUser}}
+            <form class="link">
+                <input type="radio" name="link" id="public" value="public" checked /><label for="public">首页</label>/
+                <input type="radio" name="link" id="private" value="private" /><label for="private">个人主页</label>
+            </form>
+            {{/if}}
+        </div>
+    </div>
+    <div class="nav-side-menu">
+        <div class="brand">分类</div>
+        <i class="glyphicon glyphicon-align-justify toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+        <div class="menu-list">
+            <ul id="menu-content" class="menu-content collapse out">
+                <li data-toggle="collapse" data-target="#books" class="collapsed active">
+                    <a href="#">读书<span class="arrow"></span></a>
+                </li>
+                <ul class="sub-menu collapse" id="books">
+                    <li class="active"><a href="{{pathFor route='reading'}}">选段</a></li>
+                    <li><a class="disabled" href="{{pathFor route='article'}}">全篇</a></li>
+                    <li><a class="disabled" href="{{pathFor route='book'}}">整书</a></li>
+                </ul>
+                <li data-toggle="collapse" data-target="#movies" class="collapsed">
+                    <a href="#">观影 <span class="arrow"></span></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+   </template>

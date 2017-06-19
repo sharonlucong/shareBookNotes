@@ -3,24 +3,24 @@ import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
 import { Session } from 'meteor/session';
 
-import { Tasks } from '../api/tasks.js';
+import { Tasks } from '../../api/sentences.js';
 
-import './task.js';
-import './body.html';
+import './reading.html';
 
-Template.body.onCreated(function bodyOnCreated() {
+import '../layout/header.js';
+import './sentence.js';
+
+Template.reading.onCreated(function bodyOnCreated() {
     this.state = new ReactiveDict();
     Session.set('currentPage', 0);
     Meteor.subscribe('tasks');
 });
 
-Template.body.helpers({
+Template.reading.helpers({
     tasks() {
-        const instance = Template.instance();
         const currentPage = Session.get('currentPage');
-        Session.set('isPrivate', !!instance.state.get('isPrivate'));
         let collection;
-        if (!instance.state.get('isPrivate') || !Meteor.userId()) {
+        if (!Session.get('isPrivate') || !Meteor.userId()) {
             collection = Tasks.find({}, { sort: { createdAt: -1 } });
         } else {
             collection = Tasks.find({ owner: Meteor.userId() }, { sort: { createdAt: -1 } });
@@ -43,7 +43,7 @@ Template.body.helpers({
     }
 });
 
-Template.body.events({
+Template.reading.events({
     'click .prev' (event, instance) {
         const currentPage = Session.get('currentPage');
         if (currentPage > 0) {
@@ -55,10 +55,6 @@ Template.body.events({
         if (currentPage < Math.floor(Tasks.find().count() / 3)) {
             Session.set('currentPage', currentPage + 1);
         }
-    },
-    'click .link input' (event, instance) {
-        instance.state.set('isPrivate', event.target.value === "private");
-        Meteor.call('tasks.setState', event.target.value === "private");
     },
     'submit .new-task' (event, instance) {
         event.preventDefault();

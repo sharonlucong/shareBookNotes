@@ -1,11 +1,11 @@
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 
-import { Tasks } from '../api/tasks.js';
+import { Tasks } from '../../api/sentences.js';
 
-import './task.html';
+import './sentence.html';
 
-Template.task.helpers({
+Template.sentence.helpers({
     isPrivate() {
         return Session.get('isPrivate') && Meteor.userId();
     },
@@ -19,10 +19,9 @@ Template.task.helpers({
 
         return month + '/' + day + ', ' + year;
     }
-})
+});
 
-
-Template.task.events({
+Template.sentence.events({
     'change .edit' (event) {
         switch (event.target.name) {
             case "content":
@@ -53,8 +52,10 @@ Template.task.events({
             return;
         }
 
+        const currentUser = Meteor.user();
+
         const newComment = {
-            username: this.username,
+            username: currentUser.username,
             comment: inputElment.value
         };
 

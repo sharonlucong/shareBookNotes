@@ -1,11 +1,11 @@
-<template name="task">
+<template name="sentence">
     <li>
         {{#if isPrivate}}
         <button class="delete">x</button>
         <input type="text" name="source" class="edit" placeholder="请输入来源或出处" value="{{source}}" />
         <div>
-            <textarea name="content" class="edit" rows="10" cols="40" placeholder="摘录" value="{{content}}"></textarea>
-            <textarea name="note" class="edit" rows="10" cols="40" placeholder="心得" value="{{note}}"></textarea>
+            <textarea name="content" class="edit" rows="10" cols="30" placeholder="摘录" value="{{content}}"></textarea>
+            <textarea name="note" class="edit" rows="10" cols="30" placeholder="心得" value="{{note}}"></textarea>
         </div>
         {{else}}
             <span class="text"><strong>{{username}}</strong> - {{formatDate}}</span>
