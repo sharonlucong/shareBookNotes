@@ -23,7 +23,6 @@ Meteor.methods({
         Books.insert({
             contents: book.contents || [],
             author: book.author || '',
-            // note: book.notes || [],
             title: book.title || '',
             createdAt: new Date(),
             owner: Meteor.userId(),
@@ -41,7 +40,6 @@ Meteor.methods({
 
         Books.remove(bookId);
     },
-
     'books.addChapter' (bookId, chapter) {
         const book = Books.findOne({"_id": bookId});
 
@@ -51,39 +49,54 @@ Meteor.methods({
 
         Books.update(bookId, { $push: { contents: chapter } });
     },
-    'books.updateNote' (bookId, value) {
+    'books.updateChapterTitle' (bookId, chapterIndex, value) {
         const book = Books.findOne(bookId);
         if (book.private && book.owner !== Meteor.userId()) {
             throw new Meteor.Error('not-authorized');
         }
 
-        Books.update(bookId, { $set: { note: value } });
+        Books.update(bookId, { $set: { [`contents.${chapterIndex}.title`]: value } });
     },
-
-    'books.updateContent' (bookId, value) {
+    'books.updateChapterNote' (bookId, chapterIndex, value) {
         const book = Books.findOne(bookId);
         if (book.private && book.owner !== Meteor.userId()) {
             throw new Meteor.Error('not-authorized');
         }
 
-        Books.update(bookId, { $set: { content: value } });
+        Books.update(bookId, { $set: { [`contents.${chapterIndex}.note`]: value } });
     },
-    'books.updateSource' (bookId, value) {
+    'books.updateChapterContent' (bookId, chapterIndex, value) {
         const book = Books.findOne(bookId);
         if (book.private && book.owner !== Meteor.userId()) {
             throw new Meteor.Error('not-authorized');
         }
 
-        Books.update(bookId, { $set: { source: value } });
+        Books.update(bookId, { $set: { [`contents.${chapterIndex}.content`]: value } });
     },
-    'books.updateComments' (bookId, value) {
+    'books.updateBookTitle' (bookId, value) {
         const book = Books.findOne(bookId);
         if (book.private && book.owner !== Meteor.userId()) {
             throw new Meteor.Error('not-authorized');
         }
 
-        Books.update(bookId, { $push: { comments: value } });
+        Books.update(bookId, { $set: { title: value } });
     },
+    'books.updateBookAuthor' (bookId, value) {
+        const book = Books.findOne(bookId);
+        if (book.private && book.owner !== Meteor.userId()) {
+            throw new Meteor.Error('not-authorized');
+        }
+
+        Books.update(bookId, { $set: { author: value } });
+    },
+    // 'books.updateComments' (bookId, value) {
+    //     const book = Books.findOne(bookId);
+    //     if (book.private && book.owner !== Meteor.userId()) {
+    //         throw new Meteor.Error('not-authorized');
+    //     }
+
+    //     Books.update(bookId, { $push: { comments: value } });
+    // },
     'books.setState' (state) {
         if (!Meteor.userId()) {
             throw new Meteor.Error('not-authorized');

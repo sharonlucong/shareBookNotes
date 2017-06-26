@@ -2,24 +2,25 @@
     <li>
         {{#if isPrivate}}
           <button class="delete">x</button>
-          <input type="text" name="source" class="edit" placeholder="书名" value="{{title}}" />
+          <input type="text" name="book-title" class="edit" placeholder="书名" value="{{title}}" />
+          <input type="text" name="book-author" class="edit" placeholder="作者" value="{{author}}" />
               {{#each contents}}
-                <div>
+                <div class="book-contents">
                   <!--<button class="delete">x</button>-->
-                  <input type="text" name="chapter-title" class="edit" placeholder="章节名" value="{{title}}" />
+                  <input type="text" name="chapter-title" data-index="{{@index}}" class="edit" placeholder="章节名" value="{{title}}" />
                   <div>
-                    <textarea name="chapter-content" class="edit" rows="10" cols="30" placeholder="摘录" value="{{content}}"></textarea>
-                    <textarea name="chapter-note" class="edit" rows="10" cols="30" placeholder="心得" value="{{note}}"></textarea>
+                    <textarea name="chapter-content" data-index="{{@index}}" class="edit" rows="10" cols="30" placeholder="摘录" value="{{content}}"></textarea>
+                    <textarea name="chapter-note" data-index="{{@index}}" class="edit" rows="10" cols="30" placeholder="心得" value="{{note}}"></textarea>
                   </div>
                 </div>
               {{/each}}
 
               {{#each chapters}}
                   <form class="new-chapter" data-index="{{@index}}">
-                  <input type="text" name="chapter-title" data-index="{{@index}}" class="edit" placeholder="章节名" value="{{title}}" />
+                  <input type="text" name="chapter-title" data-index="{{@index}}" placeholder="章节名" value="{{title}}" />
                   <div>
-                    <textarea name="chapter-content" data-index="{{@index}}" class="edit" rows="10" cols="30" placeholder="摘录" value="{{content}}"></textarea>
-                    <textarea name="chapter-note" data-index="{{@index}}" class="edit" rows="10" cols="30" placeholder="心得" value="{{note}}"></textarea>
+                    <textarea name="chapter-content" data-index="{{@index}}" rows="10" cols="30" placeholder="摘录" value="{{content}}"></textarea>
+                    <textarea name="chapter-note" data-index="{{@index}}" rows="10" cols="30" placeholder="心得" value="{{note}}"></textarea>
                   </div>
                   <button type="submit" class="btn btn-default btn-block">提交</button>
                   </form>

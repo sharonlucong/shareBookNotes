@@ -45,16 +45,25 @@ Template.book.helpers({
 });
 
 Template.book.events({
-    'change .edit' (event) {
+    'change .edit' (event, instance) {
+        const bookId = instance.data._id;
+        const chapterIndex = event.target.dataset.index;
+
         switch (event.target.name) {
-            case "content":
-                Meteor.call('books.updateContent', this._id, event.target.value);
+            case "chapter-title":
+                Meteor.call('books.updateChapterTitle', bookId, chapterIndex, event.target.value);
                 break;
-            case "note":
-                Meteor.call('books.updateNote', this._id, event.target.value);
+            case "chapter-content":
+                Meteor.call('books.updateChapterContent', bookId, chapterIndex, event.target.value);
                 break;
-            case "source":
-                Meteor.call('books.updateSource', this._id, event.target.value);
+            case "chapter-note":
+                Meteor.call('books.updateChapterNote', bookId, chapterIndex, event.target.value);
+                break;
+            case "book-title":
+                Meteor.call('books.updateBookTitle', bookId, event.target.value);
+                break;
+            case "book-author":
+                Meteor.call('books.updateBookAuthor', bookId, event.target.value);
                 break;
             default:
                 break;
