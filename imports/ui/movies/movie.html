@@ -1,3 +1,20 @@
 <template name="movie">
-  施工中...
+    <!--<ul>
+        {{#each tasks}} {{> sentence}} {{/each}}
+    </ul>-->
+    <div class="pagination">
+        <div class="prev">上一页</div> |
+        <div class="next">下一页</div>
+    </div>
+    {{#if currentUser}}
+    <form class="new-task">
+        <label>添加：</label>
+        <input type="text" name="source" placeholder="电影名称" />
+        <div>
+            <textarea name="movie-note" rows="10" placeholder="感想"></textarea>
+        </div>
+        <input type="submit" value="添加" />
+    </form>
+    {{/if}}
+
 </template>
