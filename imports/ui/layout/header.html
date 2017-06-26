@@ -27,11 +27,16 @@
                 <ul class="sub-menu collapse" id="books">
                     <li class="active"><a href="{{pathFor route='reading'}}">选段</a></li>
                     <li><a class="disabled" href="{{pathFor route='article'}}">全篇</a></li>
-                    <li><a class="disabled" href="{{pathFor route='book'}}">整书</a></li>
+                    <li><a class="disabled" href="{{pathFor route='books'}}">整书</a></li>
                 </ul>
                 <li data-toggle="collapse" data-target="#movies" class="collapsed">
                     <a href="#">观影 <span class="arrow"></span></a>
                 </li>
+                <ul class="sub-menu collapse" id="movies">
+                    <li class="active"><a href="{{pathFor route='movie'}}">电影</a></li>
+                    <li><a class="disabled" href="＃">电视剧</a></li>
+                </ul>
+
             </ul>
         </div>
     </div>

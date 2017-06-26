@@ -1,3 +1,160 @@
 <template name="book">
-  施工中...
+    <li>
+        {{#if isPrivate}}
+          <button class="delete">x</button>
+          <input type="text" name="source" class="edit" placeholder="书名" value="{{title}}" />
+              {{#each contents}}
+                <div>
+                  <!--<button class="delete">x</button>-->
+                  <input type="text" name="chapter-title" class="edit" placeholder="章节名" value="{{title}}" />
+                  <div>
+                    <textarea name="chapter-content" class="edit" rows="10" cols="30" placeholder="摘录" value="{{content}}"></textarea>
+                    <textarea name="chapter-note" class="edit" rows="10" cols="30" placeholder="心得" value="{{note}}"></textarea>
+                  </div>
+                </div>
+              {{/each}}
+
+              {{#each chapters}}
+                  <form class="new-chapter" data-index="{{@index}}">
+                  <input type="text" name="chapter-title" data-index="{{@index}}" class="edit" placeholder="章节名" value="{{title}}" />
+                  <div>
+                    <textarea name="chapter-content" data-index="{{@index}}" class="edit" rows="10" cols="30" placeholder="摘录" value="{{content}}"></textarea>
+                    <textarea name="chapter-note" data-index="{{@index}}" class="edit" rows="10" cols="30" placeholder="心得" value="{{note}}"></textarea>
+                  </div>
+                  <button type="submit" class="btn btn-default btn-block">提交</button>
+                  </form>
+              {{/each}}
+              <button type="button" class="edit btn btn-default btn-sm pull-right">
+                  添加章节
+              </button>
+
+        {{else}}
+            <span class="text"><strong>{{username}}</strong> - </span>
+
+            <div class="book-item">
+              <div class="book-title">
+                 书名：{{title}}
+              </div>
+              <div class="book-author">
+                 作者：{{author}}
+              </div>
+
+              <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                {{#each contents}}
+                  <div class="panel panel-default">
+                    <div class="panel-heading chapter-title" role="tab" id="heading{{@index}}">
+                      <h5 class="panel-title">
+                        <a role="button" data-toggle="collapse" href="#collapse{{@index}}" aria-expanded="true" aria-controls="collapse{{@index}}">
+                          标题：{{title}}
+                        </a>
+                      </h5>
+                    </div>
+                    <div id="collapse{{@index}}" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading{{@index}}">
+                      <div class="panel-body">
+                        <div class="chapter-content">节选内容："{{content}}"</div>
+                        {{#if note}}
+                          <div class="chapter-note">
+                            笔记：{{note}}
+                          </div>
+                        {{/if}}
+                      </div>
+                    </div>
+                  </div>
+                  <!--<div class="chapter">
+                      <div class="chapter-title">标题：{{title}}</div>
+                      <div class="chapter-content">节选内容："{{content}}"</div>
+
+                      {{#if note}}
+                        <div class="chapter-note">
+                          笔记：{{note}}
+                        </div>
+                      {{/if}}-->
+
+                      <!--<div class="comments">
+                        <div class="comment-container">
+                            {{#each comments}}
+                                <div class="comment-item">{{username}}: {{comment}}</div>
+                            {{/each}}
+                        </div>
+                        {{#if currentUser}}
+                        <form class="new-comment">
+                            <label class="comment-label">评论: </label>
+                            <input type="text" class="comment" name="comment" value="{{comment}}"/>
+                            <input type="submit" class="add" value="提交"/>
+                        </form>
+                        {{/if}}
+                      </div>-->
+
+                  <!--</div>-->
+
+
+
+                {{/each}}
+              </div>
+
+              <!--<nav aria-label="Page navigation">
+                <ul class="pager">
+                  <li>
+                    <a href="#" aria-label="Previous">
+                      <span aria-hidden="true">&laquo;</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" aria-label="Next">
+                      <span aria-hidden="true">&raquo;</span>
+                    </a>
+                  </li>
+                </ul>
+              </nav>-->
+
+            </div>
+
+        {{/if}}
+    </li>
+
+        <!--{{#if currentUser}}-->
+
+    <!--<form class="form-horizontal">
+  <div class="form-group">
+    <label for="book-title" class="col-sm-2 control-label">书名：</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="book-title" placeholder="书名">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="book-author" class="col-sm-2 control-label">作者：</label>
+    <div class="col-sm-10">
+      <input type="password" class="form-control" id="book-author" placeholder="作者">
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="button" class="btn btn-default btn-sm pull-right">
+        添加章节
+      </button>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-default">添加</button>
+    </div>
+  </div>
+</form>-->
+
+
+    <!--<form class="new-task">
+        <label>书名：</label>
+        <input type="text" name="title" placeholder="书名" />
+        <label>作者：</label>
+        <input type="text" name="author" placeholder="作者" />
+        <div>
+           <button type="button" class="btn btn-default btn-sm pull-right">
+              添加章节
+            </button>-->
+            <!--<textarea name="content" rows="10" cols="30" placeholder="摘抄"></textarea>
+            <textarea name="note" rows="10" cols="30" placeholder="心得"></textarea>-->
+        <!--</div>
+        <input type="submit" value="添加" />-->
+    <!--</form>-->
+    <!--{{/if}}-->
 </template>
