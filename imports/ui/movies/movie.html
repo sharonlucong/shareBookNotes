@@ -1,20 +1,53 @@
 <template name="movie">
-    <!--<ul>
-        {{#each tasks}} {{> sentence}} {{/each}}
-    </ul>-->
-    <div class="pagination">
-        <div class="prev">上一页</div> |
-        <div class="next">下一页</div>
-    </div>
-    {{#if currentUser}}
-    <form class="new-task">
-        <label>添加：</label>
-        <input type="text" name="source" placeholder="电影名称" />
+    <li>
+        {{#if isPrivate}}
+        <!--<button class="delete">x</button>
+        <input type="text" name="source" class="edit" placeholder="请输入来源或出处" value="{{source}}" />
         <div>
-            <textarea name="movie-note" rows="10" placeholder="感想"></textarea>
-        </div>
-        <input type="submit" value="添加" />
-    </form>
-    {{/if}}
+            <textarea name="content" class="edit" rows="10" cols="30" placeholder="摘录" value="{{content}}"></textarea>
+            <textarea name="note" class="edit" rows="10" cols="30" placeholder="心得" value="{{note}}"></textarea>
+        </div>-->
+        {{else}}
+            <span class="text"><strong>{{username}}</strong> - </span>
 
+            <div class="row">
+              <!--<div class="col-sm-6 col-md-4">-->
+                <div class="thumbnail">
+                    <img src="{{imageUrl}}">
+                  <div class="caption">
+                    <h3>{{title}}</h3>
+                    <p>笔记：{{note}}</p>
+                  </div>
+                </div>
+              <!--</div>-->
+            </div>
+
+            <!--<span class="text"><strong>{{username}}</strong> - {{formatDate}}</span>
+            {{#if content}}
+            <div class="content">
+                <div>节选内容："{{content}}"</div>
+                <div class="source"> 摘自 - {{source}} </div>
+            </div>
+            {{/if}}
+            {{#if note}}
+            <div class="notes">
+                笔记：{{note}}
+            </div>
+            {{/if}}
+            <div class="comments">
+                <div class="comment-container">
+                    {{#each comments}}
+                        <div class="comment-item">{{username}}: {{comment}}</div>
+                    {{/each}}
+                </div>
+                {{#if currentUser}}
+                <form class="new-comment">
+                    <label class="comment-label">评论: </label>
+                    <input type="text" class="comment" name="comment" value="{{comment}}"/>
+                    <input type="submit" class="add" value="提交"/>
+                </form>
+                {{/if}}
+            </div>-->
+        {{/if}}
+    </li>
 </template>

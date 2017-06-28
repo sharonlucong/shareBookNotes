@@ -1,0 +1,43 @@
+<template name="movies">
+    <ul>
+        {{#each movies}} {{> movie}} {{/each}}
+    </ul>
+    <!--<div class="row">
+  <div class="col-sm-6 col-md-4">
+    <div class="thumbnail">
+      <img src="..." alt="...">
+      <div class="caption">
+        <h3>Thumbnail label</h3>
+        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+      </div>
+    </div>
+  </div>
+</div>-->
+    <div class="pagination">
+        <div class="prev">上一页</div> |
+        <div class="next">下一页</div>
+    </div>
+    {{#if currentUser}}
+    <form class="new-movie">
+        <label>添加：</label>
+        <input type="text" name="movieTitle" placeholder="电影名称" />
+        <div class="row">
+            {{#if isLoading}} <div class="loader center-block"></div> {{/if}}
+
+            {{#each movieImages}}
+            <div class="col-xs-3 col-md-3">
+                <a href="#" class="thumbnail">
+                <img src="{{this}}">
+                </a>
+            </div>
+            {{/each}}
+        </div>
+
+        <div style="margin: 20px;" class="row">
+            <textarea name="movieNote" rows="10" placeholder="感想"></textarea>
+        </div>
+        <input type="submit" value="添加" />
+    </form>
+    {{/if}}
+
+</template>
