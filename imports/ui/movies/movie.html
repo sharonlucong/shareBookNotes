@@ -1,12 +1,18 @@
 <template name="movie">
-    <li>
+    <li class="movie-item">
         {{#if isPrivate}}
-        <!--<button class="delete">x</button>
-        <input type="text" name="source" class="edit" placeholder="请输入来源或出处" value="{{source}}" />
-        <div>
-            <textarea name="content" class="edit" rows="10" cols="30" placeholder="摘录" value="{{content}}"></textarea>
-            <textarea name="note" class="edit" rows="10" cols="30" placeholder="心得" value="{{note}}"></textarea>
-        </div>-->
+        <button class="delete">x</button>
+        <input type="text" name="title" class="edit" placeholder="电影名称" value="{{title}}" />
+        <div class="row">
+            <div class="col-sm-4 col-md-4">
+                <div class="thumbnail">
+            <img src="{{imageUrl}}">
+                </div>
+            </div>
+            <div class="col-sm-8 col-md-8">
+                <textarea name="note" class="edit" rows="8" placeholder="心得" value="{{note}}"></textarea>
+            </div>
+        </div>
         {{else}}
             <span class="text"><strong>{{username}}</strong> - </span>
 

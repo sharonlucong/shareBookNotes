@@ -1,6 +1,8 @@
 import { Meteor } from "meteor/meteor";
 import { HTTP } from "meteor/http";
-import { Mongo } from 'meteor/mongo';
+import { Mongo } from "meteor/mongo";
+import { check } from 'meteor/check';
+
 export const Movies = new Mongo.Collection("movies");
 
 if (Meteor.isServer) {
@@ -28,18 +30,40 @@ if (Meteor.isServer) {
 }
 
 Meteor.methods({
-    'movies.insert' (movie) {
-        if (!Meteor.userId()) {
-            throw new Meteor.Error('not-authorized');
-        }
-
-        Movies.insert({
-            title: movie.title || '',
-            note: movie.note || '',
-            imageUrl: movie.imageUrl || '',
-            createdAt: new Date(),
-            owner: Meteor.userId(),
-            username: Meteor.user().username
-        });
+  "movies.insert"(movie) {
+    if (!Meteor.userId()) {
+      throw new Meteor.Error("not-authorized");
     }
+
+    Movies.insert({
+      title: movie.title || "",
+      note: movie.note || "",
+      imageUrl: movie.imageUrl || "",
+      createdAt: new Date(),
+      owner: Meteor.userId(),
+      username: Meteor.user().username
+    });
+  },
+
+  "movies.updateContent"(movieId, prop, value) {
+    const movie = Movies.findOne(movieId);
+    if (movie.private && movie.owner !== Meteor.userId()) {
+      throw new Meteor.Error("not-authorized");
+    }
+
+    Movies.update(movieId, {
+      $set: { [`${prop}`]: value }
+    });
+  },
+
+  "movies.remove"(movieId) {
+    check(movieId, String);
+
+    const movie = Movies.findOne(movieId);
+    if (movie.private && movie.owner !== Meteor.userId()) {
+      throw new Meteor.Error("not-authorized");
+    }
+
+    Movies.remove(movieId);
+  }
 });
