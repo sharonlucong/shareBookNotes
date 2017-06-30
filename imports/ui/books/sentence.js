@@ -38,6 +38,24 @@ Template.sentence.events({
         }
 
     },
+    'click .tag .tag-remove' (event, instance) {
+        const index = event.target.dataset.index;
+        instance.data.tags.splice(index, 1);
+        Meteor.call("tasks.updateTags", instance.data._id, instance.data.tags);
+        // tags.splice(index, 1);
+        // instance.state.set("tags", tags);
+    },
+    'change input[name="tag"]'(event, instance) {
+        if (!event.target.value.trim()) {
+            return;
+        }
+        this.tags.push(event.target.value);
+        Meteor.call("tasks.updateTags", this._id, this.tags);
+        // const tags = instance.state.get("tags");
+        // tags.push(event.target.value);
+        // instance.state.set("tags", tags);
+        // event.target.value = "";
+    },
     'click .toggle-checked' () {
         Meteor.call('tasks.setChecked', this._id, !this.checked);
     },

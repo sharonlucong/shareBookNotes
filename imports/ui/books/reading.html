@@ -11,6 +11,20 @@
         <label>摘录：</label>
         <input type="text" name="source" placeholder="请输入来源或出处" />
         <div>
+            <label>标签：</label>
+            <input type="text" name="tag" placeholder="请输入标签" />
+            <div class="tag-list">
+            {{#each tags}}
+                <div class="tag">
+                    <div class="tag-remove" data-index="{{@index}}">
+                        x
+                    </div>
+                    {{this}}
+                </div>
+            {{/each}}
+            </div>
+        </div>
+        <div>
             <textarea name="content" rows="10" cols="30" placeholder="摘抄"></textarea>
             <textarea name="note" rows="10" cols="30" placeholder="心得"></textarea>
         </div>

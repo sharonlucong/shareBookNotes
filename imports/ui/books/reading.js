@@ -40,6 +40,14 @@ Template.reading.helpers({
     },
     incompleteCount() {
         return Tasks.find({ checked: { $ne: true } }).count();
+    },
+    tags() {
+        const instance = Template.instance();
+
+        if (!instance.state.get('tags')) {
+            instance.state.set('tags', []);
+        }
+        return instance.state.get('tags');
     }
 });
 
@@ -56,6 +64,18 @@ Template.reading.events({
             Session.set('currentPage', currentPage + 1);
         }
     },
+    'click .tag .tag-remove' (event, instance) {
+        const index = event.target.dataset.index;
+        const tags = instance.state.get("tags");
+        tags.splice(index, 1);
+        instance.state.set("tags", tags);
+    },
+    'change input[name="tag"]'(event, instance) {
+        const tags = instance.state.get("tags");
+        tags.push(event.target.value);
+        instance.state.set("tags", tags);
+        event.target.value = "";
+    },
     'submit .new-task' (event, instance) {
         event.preventDefault();
 
@@ -68,7 +88,8 @@ Template.reading.events({
         const task = {
             content: target.content.value,
             note: target.note.value,
-            source: target.source.value
+            source: target.source.value,
+            tags: instance.state.get("tags")
         };
 
         Meteor.call('tasks.insert', task);
@@ -76,5 +97,6 @@ Template.reading.events({
         target.content.value = '';
         target.note.value = '';
         target.source.value = '';
+        instance.state.set("tags", []);
     }
 })
