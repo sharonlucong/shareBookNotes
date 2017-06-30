@@ -10,7 +10,7 @@ Template.header.onCreated(function bodyOnCreated() {
 });
 
 Template.header.helpers({
-  isTargetLinkis: function(category) {
+  isTargetLink: function(category) {
     const instance = Template.instance();
 
     if (!instance.state.get("category")) {

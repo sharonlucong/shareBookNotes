@@ -4,6 +4,20 @@
         <button class="delete">x</button>
         <input type="text" name="source" class="edit" placeholder="请输入来源或出处" value="{{source}}" />
         <div>
+            <label>标签：</label>
+            <input type="text" name="tag" placeholder="请输入标签" />
+            <div class="tag-list">
+            {{#each tags}}
+                <div class="tag">
+                    <div class="tag-remove" data-index="{{@index}}">
+                        x
+                    </div>
+                    {{this}}
+                </div>
+            {{/each}}
+            </div>
+        </div>
+        <div>
             <textarea name="content" class="edit" rows="10" cols="30" placeholder="摘录" value="{{content}}"></textarea>
             <textarea name="note" class="edit" rows="10" cols="30" placeholder="心得" value="{{note}}"></textarea>
         </div>
@@ -14,6 +28,14 @@
                 <div>节选内容："{{content}}"</div>
                 <div class="source"> 摘自 - {{source}} </div>
             </div>
+            {{#if tags}}
+            <div class="tags">
+                <div class="tag-icon glyphicon glyphicon-tags"></div>
+                            {{#each tags}}
+                <span class="label label-info">{{this}}</span>
+                            {{/each}}
+            </div>
+            {{/if}}
             {{/if}}
             {{#if note}}
             <div class="notes">

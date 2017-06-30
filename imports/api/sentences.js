@@ -24,6 +24,7 @@ Meteor.methods({
         Tasks.insert({
             content: task.content || '',
             note: task.note || '',
+            tags: task.tags,
             source: task.source || '',
             createdAt: new Date(),
             owner: Meteor.userId(),
@@ -40,6 +41,14 @@ Meteor.methods({
         }
 
         Tasks.remove(taskId);
+    },
+    'tasks.updateTags' (taskId, value) {
+        const task = Tasks.findOne(taskId);
+        if (task.private && task.owner !== Meteor.userId()) {
+            throw new Meteor.Error('not-authorized');
+        }
+
+        Tasks.update(taskId, { $set: { tags: value } });
     },
     'tasks.updateNote' (taskId, value) {
         const task = Tasks.findOne(taskId);
