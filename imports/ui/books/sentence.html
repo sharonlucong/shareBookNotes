@@ -45,7 +45,7 @@
             <div class="comments">
                 <div class="comment-container">
                     {{#each comments}}
-                        <div class="comment-item">{{username}}: {{comment}}</div>
+                        <div class="comment-item"><span class="comment-date">{{date}}</span> {{username}}: {{comment}}</div>
                     {{/each}}
                 </div>
                 {{#if currentUser}}

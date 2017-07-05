@@ -18,6 +18,16 @@ Template.sentence.helpers({
         const year = this.createdAt.getFullYear();
 
         return month + '/' + day + ', ' + year;
+    },
+    commentDate() {
+        const date = new Date();
+        const day = date.getDate();
+        const month = date.getMonth() + 1;
+        const year = date.getFullYear();
+        const hour = date.getHours();
+        const minute = date.getMinutes();
+
+        return month + '/' + day + '/' + year + ' ' + hour + ': ' + minute;
     }
 });
 
@@ -72,9 +82,19 @@ Template.sentence.events({
 
         const currentUser = Meteor.user();
 
+        const date = new Date();
+        const day = date.getDate();
+        const month = date.getMonth() + 1;
+        const year = date.getFullYear();
+        const hour = date.getHours();
+        const minute = date.getMinutes();
+
+        const commentDate = month + '/' + day + '/' + year + ' ' + hour + ':' + minute;
+
         const newComment = {
             username: currentUser.username,
-            comment: inputElment.value
+            comment: inputElment.value,
+            date: commentDate
         };
 
         Meteor.call('tasks.updateComments', this._id, newComment);

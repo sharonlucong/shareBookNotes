@@ -499,7 +499,7 @@ div.tag {
   color: white;
   margin: 0 2px;
   position: relative;
-  display:inline-block;
+  display: inline-block;
   background: #5bc0de;
   border-radius: 5px;
   padding: 2px 15px 2px 12px;
@@ -513,4 +513,9 @@ div.tag {
 
 .tag .tag-remove:hover {
   cursor: pointer;
+}
+
+.comment-date {
+  font-size: 10px;
+  color: grey;
 }
