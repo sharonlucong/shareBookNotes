@@ -2,6 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 
 import { Tasks } from '../../api/sentences.js';
+import  '../../api/comments.js';
 
 import './sentence.html';
 
@@ -48,16 +49,19 @@ Template.sentence.events({
         }
 
     },
-    'click .tag .tag-remove' (event, instance) {
+    'click .tag .edit' (event, instance) {
         const index = event.target.dataset.index;
         instance.data.tags.splice(index, 1);
         Meteor.call("tasks.updateTags", instance.data._id, instance.data.tags);
         // tags.splice(index, 1);
         // instance.state.set("tags", tags);
     },
-    'change input[name="tag"]'(event, instance) {
+    'change input[name="tag"]' (event, instance) {
         if (!event.target.value.trim()) {
             return;
+        }
+        if (!this.tags) {
+            this.tags  = [];
         }
         this.tags.push(event.target.value);
         Meteor.call("tasks.updateTags", this._id, this.tags);
@@ -97,7 +101,15 @@ Template.sentence.events({
             date: commentDate
         };
 
+
         Meteor.call('tasks.updateComments', this._id, newComment);
+
+        const users = this.comments.map(comment => comment.username).filter( function( item, index, inputArray ) {
+           return inputArray.indexOf(item) == index && item !== currentUser.username;
+        });
+
+        Meteor.call('messages.insert', users, this._id);
+
         inputElment.value = "";
     }
 });

@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { Session } from 'meteor/session';
+import { Comments } from "../../api/comments.js";
 
 import './header.html';
 
@@ -10,6 +11,12 @@ Template.header.onCreated(function bodyOnCreated() {
 });
 
 Template.header.helpers({
+  hasMessages: function() {
+    const currentUser = Meteor.user();
+
+    return currentUser && Comments.findOne({username: currentUser.username});
+  },
+
   isTargetLink: function(category) {
     const instance = Template.instance();
 

@@ -519,3 +519,11 @@ div.tag {
   font-size: 10px;
   color: grey;
 }
+
+.blink {
+  animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+  50% { opacity: 0; }
+}
