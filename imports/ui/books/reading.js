@@ -41,7 +41,7 @@ Template.reading.helpers({
     incompleteCount() {
         return Tasks.find({ checked: { $ne: true } }).count();
     },
-    tags() {
+    tagInputs() {
         const instance = Template.instance();
 
         if (!instance.state.get('tags')) {
@@ -64,13 +64,17 @@ Template.reading.events({
             Session.set('currentPage', currentPage + 1);
         }
     },
-    'click .tag .tag-remove' (event, instance) {
+    'click form div div .tag .tag-remove' (event, instance) {
         const index = event.target.dataset.index;
         const tags = instance.state.get("tags");
         tags.splice(index, 1);
         instance.state.set("tags", tags);
     },
-    'change input[name="tag"]'(event, instance) {
+    'change form div input[name="tag"]'(event, instance) {
+        if (!event.target.value.trim()) {
+            event.target.value = "";
+            return;
+        }
         const tags = instance.state.get("tags");
         tags.push(event.target.value);
         instance.state.set("tags", tags);
