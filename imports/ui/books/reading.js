@@ -60,7 +60,15 @@ Template.reading.events({
     },
     'click .next' (event, instance) {
         const currentPage = Session.get('currentPage');
-        if (currentPage < Math.floor(Tasks.find().count() / 3)) {
+        let len = 0;
+
+        if (!Session.get('isPrivate') || !Meteor.userId()) {
+            len = Tasks.find({}, { sort: { createdAt: -1 } }).count();
+        } else {
+            len = Tasks.find({ owner: Meteor.userId() }).count();
+        }
+
+        if (currentPage < Math.floor(len / 3)) {
             Session.set('currentPage', currentPage + 1);
         }
     },
