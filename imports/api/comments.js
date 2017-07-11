@@ -29,7 +29,11 @@ Meteor.methods({
                 });
             }
             else {
-                Comments.update({username: userId}, { $push: { taskIds: taskId } });
+                if (!Comments.findOne({
+                    username: userId,
+                    taskIds: taskId})) {
+                        Comments.update({username: userId}, { $push: { taskIds: taskId } });
+                    }
             }
         });
 

@@ -108,6 +108,10 @@ Template.sentence.events({
            return inputArray.indexOf(item) == index && item !== currentUser.username;
         });
 
+        if (users.indexOf(this.username) === -1) {
+            users.push(this.username);
+        }
+
         Meteor.call('messages.insert', users, this._id);
 
         inputElment.value = "";

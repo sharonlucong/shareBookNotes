@@ -29,6 +29,7 @@ body {
   /*background-size: contain;*/
   color: #303030;
   height: 80px;
+  border-top: 5px solid #607D8B;
 }
 
 .slogan {
