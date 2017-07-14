@@ -25,7 +25,8 @@
             <span class="text"><strong>{{username}}</strong> - {{formatDate}}</span>
             {{#if content}}
             <div class="content">
-                <div>节选内容："{{content}}"</div>
+                节选内容：
+                <pre>{{content}}</pre>
                 <div class="source"> 摘自 - {{source}} </div>
             </div>
             {{#if tags}}

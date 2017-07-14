@@ -11,6 +11,12 @@ body {
   font-size: 14px;
 }
 
+pre {
+  background: rgba(255, 255, 255, 0.39);
+  white-space: pre-line;
+  border: 1px solid #eaeaea;
+}
+
 .header .title {
   background: #3c3c3c;
   color: whitesmoke;
@@ -29,7 +35,7 @@ body {
   /*background-size: contain;*/
   color: #303030;
   height: 80px;
-  border-top: 5px solid #607D8B;
+  border-top: 5px solid #607d8b;
 }
 
 .slogan {
@@ -435,6 +441,15 @@ li button.edit {
   /*background: white;*/
 }
 
+div.row .thumbnail {
+  background-image: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.53),
+      rgba(255, 255, 255, 0.75)
+    ),
+    url(https://s-media-cache-ak0.pinimg.com/736x/d1/ec/33/d1ec33da92f09ca1d2af2241217324b9.jpg);
+}
+
 a.thumbnail img {
   height: 140px;
   width: 100px;
@@ -526,5 +541,7 @@ div.tag {
 }
 
 @keyframes blinker {
-  50% { opacity: 0; }
+  50% {
+    opacity: 0;
+  }
 }
