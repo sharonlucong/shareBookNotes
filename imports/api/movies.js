@@ -1,7 +1,7 @@
 import { Meteor } from "meteor/meteor";
 import { HTTP } from "meteor/http";
 import { Mongo } from "meteor/mongo";
-import { check } from 'meteor/check';
+import { check } from "meteor/check";
 
 export const Movies = new Mongo.Collection("movies");
 
@@ -65,5 +65,14 @@ Meteor.methods({
     }
 
     Movies.remove(movieId);
+  },
+
+  "movies.updateComments"(movieId, value) {
+    const movie = Movies.findOne(movieId);
+    if (movie.private && movie.owner !== Meteor.userId()) {
+      throw new Meteor.Error("not-authorized");
+    }
+
+    Movies.update(movieId, { $push: { comments: value } });
   }
 });

@@ -32,6 +32,35 @@
                 {{/if}}
             </div>
             {{/each}}
+
+          {{#each movieMessages}}
+            <span class="text"><strong>{{username}}</strong> - {{formatDate}}</span>
+            <div class="row">
+              <!--<div class="col-sm-6 col-md-4">-->
+                <div class="thumbnail">
+                  <div class="caption">
+                    <h3>{{title}}</h3>
+                    <p>笔记：{{note}}</p>
+                  </div>
+                </div>
+              <!--</div>-->
+            </div>
+            <div class="comments">
+                <div class="comment-container">
+                    {{#each comments}}
+                        <div class="comment-item">{{username}}: {{comment}}</div>
+                    {{/each}}
+                </div>
+                {{#if currentUser}}
+                <!--<form class="new-comment">
+                    <label class="comment-label">评论: </label>
+                    <input type="text" class="comment" name="comment" value="{{comment}}"/>
+                    <input type="submit" class="add" value="提交"/>
+                </form>-->
+                {{/if}}
+            </div>
+            {{/each}}
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

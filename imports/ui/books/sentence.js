@@ -112,7 +112,7 @@ Template.sentence.events({
             users.push(this.username);
         }
 
-        Meteor.call('messages.insert', users, this._id);
+        Meteor.call('messages.insert', users, this._id, "sentence");
 
         inputElment.value = "";
     }
